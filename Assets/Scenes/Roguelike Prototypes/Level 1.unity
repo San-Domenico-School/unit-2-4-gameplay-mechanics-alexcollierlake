@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b95fadb92cf43c8b71c5a654f6130b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 25
+  rotationSpeed: 30
 --- !u!1001 &245963551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -466,7 +466,7 @@ Rigidbody:
   m_GameObject: {fileID: 825574528}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -938,8 +938,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScale: {x: 1.25, y: 1.25, z: 1.25}
   playerMass: 10
-  playerDrag: 0.7
-  playerMoveForce: 120
+  playerDrag: 0.2
+  playerMoveForce: 40
   playerRepelForce: 0.75
   playerBounce: 0
   debugSpawnWaves: 0

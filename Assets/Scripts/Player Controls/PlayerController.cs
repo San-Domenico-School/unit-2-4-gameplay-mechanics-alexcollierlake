@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private SphereCollider playerCollider;
     private Light powerUpIndicator;
     private PlayerInputActions inputAction;
-    private GameObject focalPoint;
+    private Transform focalPoint;
     private float moveForceMagnitude, moveDirection;
 
     public bool hasPowerUp { get; private set; }
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        //
+        inputAction = new PlayerInputActions();
     }
 
     // Start is called before the first frame update
@@ -80,15 +80,15 @@ public class PlayerController : MonoBehaviour
         playerRB.mass = GameManager.Instance.playerMass;
         playerRB.drag = GameManager.Instance.playerDrag;
         moveForceMagnitude = GameManager.Instance.playerMoveForce;
-        focalPoint = GameObject.Find("Focal Point");
+        focalPoint = GameObject.Find("FocalPoint").transform;
     }
 
     private void Move()
     {
         if(focalPoint != null)
         {
-            Vector3 direction = focalPoint.gameObject.transform.position - transform.position;
-            playerRB.AddForce(direction.normalized * moveForceMagnitude * moveDirection);
+            
+            playerRB.AddForce(focalPoint.forward.normalized * moveForceMagnitude * moveDirection);
         }
     }
 
