@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Startup")
+        if (collision.gameObject.CompareTag("Startup"))
         {
             collision.gameObject.tag = "Ground";
             playerCollider.material.bounciness = GameManager.Instance.playerBounce;
