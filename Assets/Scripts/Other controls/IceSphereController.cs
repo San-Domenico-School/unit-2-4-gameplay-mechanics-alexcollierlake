@@ -34,7 +34,7 @@ public class IceSphereController : MonoBehaviour
         iceVFX = GetComponent<ParticleSystem>();
         RandomizeSizeAndMass();
 
-        InvokeRepeating("Melt", 0.5f, startDelay);
+        InvokeRepeating("Melt", startDelay, 0.4f);
     }
 
     private void RandomizeSizeAndMass()
@@ -55,16 +55,8 @@ public class IceSphereController : MonoBehaviour
     }
 
     private void Dissolution()
-    {
-        float volume = 4f / 3f * Mathf.PI * Mathf.Pow(transform.localScale.x, 2);
-
-        if(volume <= minimumVolume)
-        {
-            //iceVFX.Stop();
-            Destroy(this);
-        }
-
- 
+    { 
+            Destroy(gameObject);
 
     }
 

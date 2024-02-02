@@ -49,7 +49,7 @@ public class SpawnManager : MonoBehaviour
     {
 
         //IceSphere[] iceSpheres = FindObjectsOfType<IceSpheres>();
-        if (GameObject.Find("PLayer") != null && FindObjectsOfType<IceSphereController>().Length == 0)
+        if (GameObject.Find("Player") != null && FindObjectsOfType<IceSphereController>().Length == 0)
         {
             SpawnIceWave();
         }
@@ -57,7 +57,18 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnIceWave()
     {
-        //
+
+        for (int i = 0; i < waveNumber; i++)
+        {
+            Instantiate(iceSphere, SetRandomPosition(1.6f), iceSphere.transform.rotation);
+        }
+
+        if (waveNumber <= maximumWave)
+        {
+            waveNumber++;
+        }
+
+
     }
 
     private void SetObjectActive(GameObject obj, float byWaveProbability)
