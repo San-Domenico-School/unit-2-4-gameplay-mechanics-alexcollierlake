@@ -31,10 +31,19 @@ public class PowerInteractor : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             GameObject player = collision.gameObject;
-            Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
+            Rigidbody playerRB = player.GetComponent<Rigidbody>();
             PlayerController playerController = player.GetComponent<PlayerController>();
             Vector3 direction = (player.transform.position - transform.position).normalized;
+            if(player.GetComponent<PlayerController>().hasPowerUp)
+            {
+                iceSphereRB.AddForce(-direction * playerRB.mass * GameManager.Instance.playerRepelForce, ForceMode.Impulse);
+            }
+            else
+            {
+                playerRB.AddForce(-direction * playerRB.mass * GameManager.Instance.playerRepelForce, ForceMode.Impulse);
+            }
         }
+
     }
     
 }

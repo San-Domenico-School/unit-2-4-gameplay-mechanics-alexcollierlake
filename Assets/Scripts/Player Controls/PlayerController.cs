@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Transform focalPoint;
     private float moveForceMagnitude, moveDirection;
 
+
     public bool hasPowerUp { get; private set; }
 
 
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
         powerUpIndicator = GetComponent<Light>();
         playerCollider.material.bounciness = 0.0f;
         powerUpIndicator.intensity = 0.0f;
+        hasPowerUp = true;
 
 
     }
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
         inputAction.Enable();
         inputAction.Player.Movement.performed += OnMovementPerformed;
         inputAction.Player.Movement.canceled += OnMovememntCanceled;
+        
     }
 
     private void OnDisable()
