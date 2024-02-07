@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         powerUpIndicator = GetComponent<Light>();
         playerCollider.material.bounciness = 0.0f;
         powerUpIndicator.intensity = 0.0f;
-        hasPowerUp = true;
+        //hasPowerUp = true;
 
 
     }

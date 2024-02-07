@@ -47,8 +47,11 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //IceSphere[] iceSpheres = FindObjectsOfType<IceSpheres>();
+        if((waveNumber > portalFirstAppearance || (GameManager.Instance.debugSpawnPortal) && portal.gameObject != null))
+        {
+            SetObjectActive(portal, portalByWaveProbability);
+        }
+    
         if (GameObject.Find("Player") != null && FindObjectsOfType<IceSphereController>().Length == 0)
         {
             SpawnIceWave();
@@ -73,7 +76,11 @@ public class SpawnManager : MonoBehaviour
 
     private void SetObjectActive(GameObject obj, float byWaveProbability)
     {
-        //
+        if(Random.value < waveNumber * byWaveProbability * Time.deltaTime)
+        {
+            obj.transform.position = SetRandomPosition(-0.6f);
+            StartCoroutine(CountdownTimer(obj.tag));
+        }
     }
 
     private Vector3 SetRandomPosition(float posY)
@@ -86,6 +93,25 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator CountdownTimer(string objectTag)
     {
-        return null;
+        float byWaveDuration = 0;
+
+        switch (objectTag)
+        {
+            case "Portal":
+                portal.SetActive(true);
+                portalActive = true;
+                byWaveDuration = portalByWaveDuration;
+                break;
+        }
+
+        yield return new WaitForSeconds(waveNumber * byWaveDuration);
+
+        switch (objectTag)
+        {
+            case "Portal":
+                portal.SetActive(false);
+                portalActive = false;
+                break;
+        }
     }
 }
