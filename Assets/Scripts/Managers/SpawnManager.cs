@@ -15,18 +15,24 @@ public class SpawnManager : MonoBehaviour
 {
 
     [Header("Objects to Spawn")]
-    [SerializeField] private GameObject iceSphere, portal, powerUp;
+    [SerializeField] private GameObject iceSphere;
+    [SerializeField] private GameObject portal;
+    [SerializeField] private GameObject powerUp;
 
     [Header("Wave Fields")]
-    [SerializeField] private int initialWave, increaseEachWave, maximumWave;
+    [SerializeField] private int maximumWave;
+    [SerializeField] private int increaseEachWave;
+    [SerializeField] private int initialWave;
 
     [Header("Portal Fields")]
     [SerializeField] private int portalFirstAppearance;
-    [SerializeField] private float portalByWaveProbability, portalByWaveDuration;
+    [SerializeField] private float portalByWaveProbability;
+    [SerializeField] private float portalByWaveDuration;
 
     [Header("PowerUp Fields")]
     [SerializeField] private int powerUpFirstAppearance;
-    [SerializeField] private float powerUpWaveProbability, powerUpByWaveDuration;
+    [SerializeField] private float powerUpWaveProbability;
+    [SerializeField] private float powerUpByWaveDuration;
 
     [Header("Island")]
     [SerializeField] private GameObject island;
@@ -41,13 +47,13 @@ public class SpawnManager : MonoBehaviour
     {
 
         islandSize = island.GetComponent<MeshCollider>().bounds.size;
-        waveNumber = 1;
+        waveNumber = initialWave;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if((waveNumber > portalFirstAppearance || (GameManager.Instance.debugSpawnPortal) && portal.gameObject != null))
+        if((waveNumber > portalFirstAppearance || GameManager.Instance.debugSpawnPortal) && !portalActive)
         {
             SetObjectActive(portal, portalByWaveProbability);
         }
@@ -78,7 +84,7 @@ public class SpawnManager : MonoBehaviour
     {
         if(Random.value < waveNumber * byWaveProbability * Time.deltaTime)
         {
-            obj.transform.position = SetRandomPosition(-0.6f);
+            obj.transform.position = SetRandomPosition(obj.transform.position.y);
             StartCoroutine(CountdownTimer(obj.tag));
         }
     }
