@@ -62,6 +62,11 @@ public class SpawnManager : MonoBehaviour
         {
             SpawnIceWave();
         }
+
+        if (GameManager.Instance.debugSpawnPortal)
+        {
+            portalByWaveDuration = 99;
+        }
     }
 
     private void SpawnIceWave()

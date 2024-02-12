@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 /*************
  * 
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInputActions inputAction;
     private Transform focalPoint;
     private float moveForceMagnitude, moveDirection;
+    private GameManager gameManager;
 
 
     public bool hasPowerUp { get; private set; }
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
         powerUpIndicator = GetComponent<Light>();
         playerCollider.material.bounciness = 0.0f;
         powerUpIndicator.intensity = 0.0f;
+        gameManager = GetComponent<GameManager>();
         //hasPowerUp = true;
 
 
@@ -62,9 +65,15 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Move();
+        if(transform.position.y < -20)
+        {
+            Debug.Log("You Lost");
+            gameObject.SetActive(false);
+            SceneManager.LoadScene("Level 1");
+        }
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext value)
@@ -84,6 +93,8 @@ public class PlayerController : MonoBehaviour
         playerRB.drag = GameManager.Instance.playerDrag;
         moveForceMagnitude = GameManager.Instance.playerMoveForce;
         focalPoint = GameObject.Find("FocalPoint").transform;
+
+        gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
     private void Move()
@@ -107,12 +118,24 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //
+        if(other.gameObject.CompareTag("Portal"))
+        {
+            gameObject.layer = LayerMask.NameToLayer("Portal");
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        //
+        if (other.gameObject.CompareTag("Portal"))
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+            if (transform.position.y <= other.transform.position.y - 1f)
+            {
+                transform.position = Vector3.up * 25f;
+                GameManager.Instance.switchLevels = true;
+            }
+        }
+
     }
 
     private IEnumerator PowerUpCooldown(float cooldown)

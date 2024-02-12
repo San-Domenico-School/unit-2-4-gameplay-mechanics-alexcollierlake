@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 
 
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager Instance;
+
+    [SerializeField] private int numLevel;
 
     [Header("Player Fields")]
     public Vector3 playerScale;
@@ -58,7 +61,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(switchLevels == true)
+        {
+            SwitchLevels();
+        }
     }
 
     private void EnablePlayer()
@@ -68,6 +74,20 @@ public class GameManager : MonoBehaviour
 
     private void SwitchLevels()
     {
-        //
+        switchLevels = false;
+
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        int nextLevel = int.Parse(currentScene.Substring(5)) + 1;
+
+        if(nextLevel <= SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene("Level " + nextLevel.ToString());
+        }
+        else
+        {
+            gameOver = true;
+            Debug.Log("You Won");
+        }
     }
 }
