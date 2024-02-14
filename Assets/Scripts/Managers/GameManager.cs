@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private int numLevel;
+    [SerializeField] private GameObject[] waypoints;
 
     [Header("Player Fields")]
     public Vector3 playerScale;
