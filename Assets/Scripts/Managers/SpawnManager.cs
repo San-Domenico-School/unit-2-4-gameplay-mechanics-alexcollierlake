@@ -53,11 +53,11 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if((waveNumber > portalFirstAppearance || GameManager.Instance.debugSpawnPortal) && !portalActive)
+        if ((waveNumber > portalFirstAppearance || GameManager.Instance.debugSpawnPortal) && !portalActive)
         {
             SetObjectActive(portal, portalByWaveProbability);
         }
-    
+
         if (GameObject.Find("Player") != null && FindObjectsOfType<IceSphereController>().Length == 0)
         {
             SpawnIceWave();
@@ -67,7 +67,17 @@ public class SpawnManager : MonoBehaviour
         {
             portalByWaveDuration = 99;
         }
-    }
+
+        if (waveNumber > powerUpFirstAppearance && !powerUpActive)
+        {
+            powerUp.transform.position = SetRandomPosition(powerUp.transform.position.y);
+            SetObjectActive(powerUp, powerUpByWaveDuration);
+
+            StartCoroutine(CountdownTimer(powerUp.tag));
+
+        }
+
+    }  
 
     private void SpawnIceWave()
     {
@@ -87,8 +97,10 @@ public class SpawnManager : MonoBehaviour
 
     private void SetObjectActive(GameObject obj, float byWaveProbability)
     {
-        if(Random.value < waveNumber * byWaveProbability * Time.deltaTime)
+        //Debug.Log("is this working");
+        if (Random.value < waveNumber * byWaveProbability * Time.deltaTime)
         {
+            
             obj.transform.position = SetRandomPosition(obj.transform.position.y);
             StartCoroutine(CountdownTimer(obj.tag));
         }
@@ -106,6 +118,8 @@ public class SpawnManager : MonoBehaviour
     {
         float byWaveDuration = 0;
 
+        Debug.Log("is this working");
+
         switch (objectTag)
         {
             case "Portal":
@@ -113,8 +127,14 @@ public class SpawnManager : MonoBehaviour
                 portalActive = true;
                 byWaveDuration = portalByWaveDuration;
                 break;
+            case "PowerUp":
+                powerUp.SetActive(true);
+                powerUpActive = true;
+                byWaveDuration = powerUpByWaveDuration;
+                break;
         }
 
+        
         yield return new WaitForSeconds(waveNumber * byWaveDuration);
 
         switch (objectTag)
@@ -123,6 +143,16 @@ public class SpawnManager : MonoBehaviour
                 portal.SetActive(false);
                 portalActive = false;
                 break;
+
+            case "PowerUp":
+                powerUp.SetActive(false);
+                powerUpActive = false;
+                break;
         }
+
+
+
+     
+
     }
 }

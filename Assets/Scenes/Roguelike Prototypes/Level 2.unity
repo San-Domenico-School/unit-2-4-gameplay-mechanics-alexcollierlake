@@ -756,6 +756,12 @@ Transform:
   m_Father: {fileID: 846185647}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1087812825 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2061806892741193477, guid: 7f5621bcf0a7542ae898580b6a66e36d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1732953098}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1096608824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,16 +1358,16 @@ MonoBehaviour:
   iceSphere: {fileID: 8590564697044729500, guid: d36ac20fdd8c047e5875fa5fa010f9b3,
     type: 3}
   portal: {fileID: 372150268}
-  powerUp: {fileID: 0}
+  powerUp: {fileID: 1087812825}
   maximumWave: 5
   increaseEachWave: 3
   initialWave: 1
   portalFirstAppearance: 3
   portalByWaveProbability: 0.01
   portalByWaveDuration: 1
-  powerUpFirstAppearance: 2
-  powerUpWaveProbability: 0.04
-  powerUpByWaveDuration: 2.75
+  powerUpFirstAppearance: 1
+  powerUpWaveProbability: 0.03
+  powerUpByWaveDuration: 4
   island: {fileID: 1403545341}
 --- !u!4 &1308422453
 Transform:
@@ -1666,6 +1672,84 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9ec5785d0ed8483093b7199fabae26c, type: 3}
+--- !u!1001 &1732953098
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2061806892741193477, guid: 7f5621bcf0a7542ae898580b6a66e36d,
+        type: 3}
+      propertyPath: m_Name
+      value: Star_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061806892741193477, guid: 7f5621bcf0a7542ae898580b6a66e36d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532161227301021169, guid: 7f5621bcf0a7542ae898580b6a66e36d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532161227301021169, guid: 7f5621bcf0a7542ae898580b6a66e36d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.232143
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532161227301021169, guid: 7f5621bcf0a7542ae898580b6a66e36d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532161227301021169, guid: 7f5621bcf0a7542ae898580b6a66e36d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.2331524
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532161227301021169, guid: 7f5621bcf0a7542ae898580b6a66e36d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532161227301021169, guid: 7f5621bcf0a7542ae898580b6a66e36d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532161227301021169, guid: 7f5621bcf0a7542ae898580b6a66e36d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532161227301021169, guid: 7f5621bcf0a7542ae898580b6a66e36d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532161227301021169, guid: 7f5621bcf0a7542ae898580b6a66e36d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532161227301021169, guid: 7f5621bcf0a7542ae898580b6a66e36d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532161227301021169, guid: 7f5621bcf0a7542ae898580b6a66e36d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f5621bcf0a7542ae898580b6a66e36d, type: 3}
 --- !u!1 &1822904826
 GameObject:
   m_ObjectHideFlags: 0
